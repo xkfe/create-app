@@ -1,0 +1,86 @@
+{
+  "name": "@xkfe/create-app",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@9.1.4",
+  "description": "✨开箱即用的前端各种项目快速开发模板的 cli 工具,包含后台、官网、小程序、H5等,提高效率，避免重复搭建",
+  "author": "xkfe <xkfe0516@gmail.com> (https://github.com/xkfe)",
+  "license": "MIT",
+  "homepage": "https://github.com/xkfe/create-app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xkfe/create-app"
+  },
+  "bugs": {
+    "url": "https://github.com/xkfe/create-app/issues"
+  },
+  "keywords": [
+    "template",
+    "create-app",
+    "vue",
+    "react",
+    "uni-app"
+  ],
+  "sideEffects": false,
+  "main": "dist/outfile.cjs",
+  "bin": {
+    "@xkfe/create-app": "dist/outfile.cjs"
+  },
+  "files": [
+    "dist/outfile.cjs",
+    "template-*"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prepublishOnly": "nr build",
+    "release": "bumpp",
+    "typecheck": "tsc --noEmit",
+    "up": "cd ./template && pnpx taze@latest major -w -r && cd ./base && pnpx @dcloudio/uvm@latest --manager pnpm",
+    "commit": "git-cz",
+    "cz": "git-cz"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "envinfo": "^7.12.0",
+    "execa": "^8.0.1",
+    "json5": "^2.2.3",
+    "kolorist": "^1.8.0",
+    "local-pkg": "^0.5.0",
+    "minimist": "^1.2.8",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.19.1",
+    "@antfu/ni": "^0.21.12",
+    "@antfu/utils": "^0.7.7",
+    "@types/ejs": "^3.1.5",
+    "@types/envinfo": "^7.8.3",
+    "@types/minimist": "^1.2.5",
+    "@types/node": "^18.19.11",
+    "@types/prompts": "^2.4.9",
+    "bumpp": "^9.3.0",
+    "commitizen": "^4.3.0",
+    "cz-git": "^1.9.2",
+    "eslint": "^8.56.0",
+    "lint-staged": "^15.2.1",
+    "simple-git-hooks": "^2.9.0",
+    "terser": "^5.31.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.3.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged",
+    "commit-msg": "node scripts/verify-commit.js"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  }
+}
